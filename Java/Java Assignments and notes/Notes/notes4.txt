@@ -1,0 +1,27 @@
+Operators:
+An operator is a 'symbol' that acts upon one or more operands and performs a calculation or
+comparision or assigments. 
+
+Types of operators:
+  unary operator,(unary +, unary -) - +5, -10
+  binary operator: 5+10.
+
+Classifications of Operators:
+1. arithmetic operators - +, -, *, / , %
+
+2. relational operators -- >, <, >=,<=,==, !=
+
+3. logical operators - logical and(&&), logical or(||), not(!)
+
+4. Assignment operator - =
+       short hand assignment operator: +=, -=, *=, /=, %=
+
+5. increment and decrement operator - ++, --
+           preincrement(++a), post increment(a++)
+           predecrement(--a), post decrement(a--)
+
+6. bitwise operator - bitwise and(&), bitwise OR(|), left shift(<<), right shift(>>)
+
+7. special operators - 
+
+

@@ -1,0 +1,58 @@
+bitwise operator:
+
+bit - a smallest individual storage location in a storage device is called a bit.
+
+1 bit - a single bit of data (0 or 1)
+8 bits - 1 byte
+1024 bytes - 1 kb(kilo bytes)
+1024 kb - 1 mb(mega byte)
+1024 mb - 1 gb(giga byte)
+1024 gb - 1 tb(tera byte)
+
+left shift (<<)
+
+binary (2)- 0,1
+octal(8) - 0-7
+decimal(10) - 0-9
+hexadecimal(16) - 0-9,(10)A, (11)B, (12)C, (13)D,(14)E, (15)F
+
+decimal - 10
+binary- 
+
+
+10 students:
+
+  baskar: 400/500 - 1 subject absent
+
+6 conditions
+m1>=35
+&&
+m2>=35
+&&
+m3>=35
+&&
+m4>=35
+&&
+m5>=35
+
+ total1=m1+m2+m3+m4+m5
+
+total1,t2,t3,t4,t5,t6
+t4 - 1st rank
+
+Control structures:
+       Control structures are used to control the execution of the program. It decides which block
+to be executed based upon the defined constraint(condition).
+
+There are three structures available in java:
+
+1. Branching or Selection Statements:
+               simple if, if-else, nested if-else, else if ladder, switch-case.
+
+2. Looping or Iterative Statements:
+              1. for loop, 2. while loop, 3. do-while loops
+
+3. Random Executions.
+               1. break, 2. Continue.
+
+

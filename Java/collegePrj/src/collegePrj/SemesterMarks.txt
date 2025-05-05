@@ -1,0 +1,146 @@
+package collegePrj;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class SemesterMarks {
+
+	//Instantiation..!
+	JFrame jf;
+	JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
+	JTextField t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
+	JButton b1=new JButton("Validate");
+	//local variable gets from getting from the value (t1) text field..!
+	String sid;
+	
+	//Frame setup..!
+	void showFrame()
+	{
+		jf.setSize(500,300);
+		jf.setVisible(true);
+		jf.setLocation(800, 100);
+		jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
+		jf.setTitle("Semester Marks Insertion");
+	}
+	
+	//Needed Components..!
+	void components()
+	{
+		jf=new JFrame();
+		jf.setLayout(null);
+		
+		//Labels here..!
+		l1=new JLabel("Enter Your STUID: ");
+		l2 = new JLabel("Enter the Semester: ");
+		
+		//TextFields here..!
+		t1 = new JTextField(25);
+		t2 = new JTextField(25);
+		
+		//Buttons here..!
+	
+	}
+	
+	//Components add to frame..!
+	void addComponents()
+	{
+		l1.setSize(130,20);
+		l1.setLocation(50, 80);
+		jf.add(l1);
+		
+		t1.setSize(190, 20);
+		t1.setLocation(200,81);
+		jf.add(t1);
+		
+		b1.setSize(100,25);
+		b1.setLocation(250,125);
+		jf.add(b1);
+	}
+	
+	//Add listeners..!
+	void addListeners()
+	{
+		b1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				//Value gets from textfield box(t1)..!
+				sid = t1.getText();
+				
+				//Outer If..!
+				if(sid.compareTo("")!=0)
+				{
+//					//Connection Making...!
+					try {
+						Class.forName("com.mysql.cj.jdbc.Driver");
+						Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/collegedb","root","");
+						//System.out.println("Connection Success..!");
+						
+						String q = "select stuid,stuname from studentstable where stuid = ?";
+						PreparedStatement ps = con.prepareStatement(q);
+						ps.setString(1, sid);
+					    ResultSet rs=ps.executeQuery();
+					    
+					    //Inner If Condition..!
+					    if(rs.next())
+					    {
+					    	String id = rs.getString(1);
+					    	String name = rs.getString(2);
+					    	if(id.compareTo(sid)==0)
+					    	{
+					    		System.out.println("\t\tHii "+name);
+					    		System.out.println("\tValidation SuccessFul..!");
+					    	}
+					    	
+					    }
+					    //Inner Else Part..!
+					    else {
+					    	System.out.println("Data is not here..!/Data is Mismatched..!");
+					    }
+					} 
+					
+					catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					catch (SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+				}
+				//Outer Else part..!
+				else
+				{
+					System.out.println("STUID Field is Empty..!");
+				}
+			}
+		});
+	}
+	
+	//Constructor Class..!
+	SemesterMarks()
+	{
+		addListeners();
+		components();
+		addComponents();
+		showFrame();
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new SemesterMarks();
+	}
+
+}

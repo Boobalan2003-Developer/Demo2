@@ -1,0 +1,49 @@
+Constructor?
+
+Constructor is a method used to build/construct an object.
+A constructor is a method that has the same of the class.
+To create an object, a constructor should be called.
+A constructor is called using "new" keyword.
+
+programatically, a constructor is also used to initialize the instance variables
+of the class.
+
+Types of constructor:
+1. default constructor 
+               ClassName()
+                {
+
+                }
+2. parameterized constructor
+      ClassName(arg_list)
+       {
+               coding
+       }
+
+**A constructor will never return any values. so the signature of a 
+constructor will not have a return_type like ordinary method.
+
+
+Polymorphims:
+
+Class
+Object
+Inheritance
+Encapsulation / Abstraction
+Polymorphism
+
+The ability of a method in a class to be present in multiple forms in same
+name.
+
+Types of polymorphism:
+1. Compile time polymorphism(early binding) or static polymorphism
+2. Runtime polymorphism(late binding) or dynamic polymorphism
+
+Method overloading -> Compile time polymorphism
+Method Overriding -> Run-time polymorphism
+
+Method overloading can be achieved by changing the number of arguments,
+types of arguements and sequence of arguments.
+Method Overloading cannot be achieved by changing the 
+return_type of the method.
+

@@ -1,0 +1,25 @@
+Variables in Java:
+
+1. static variables - the variables declared inside the class with static keyword.  These variables
+belongs the class. Hence objects are not required to access the static variables.
+
+2. instance variables - variables declared inside the class. These variable belongs to the object
+of the class. Hence object is required to access the instance variables of the class.
+
+instance(memory) of a class -> object of a class
+
+new-> dynamic memory allocation operator.
+
+ClassName obj_name=new ClassName();
+
+eg)
+
+ class VariableDemo
+{
+     int a,b; //instance variable / non-static variable
+     static int c; //static variable
+}
+
+static variables are created on class loading
+instance variables are created when an object is created.
+

@@ -1,0 +1,509 @@
+package mypack;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+public class MainFrame extends JFrame {
+    private JFrame reg_frame = new JFrame();
+    private static MainFrame mainframe;
+    private JPanel contentPane;
+    private JTextField mail_textfield;
+    private JPasswordField passwordField;
+
+    static Connection con;
+    String dept, depttype,course,year,degree,stuid,deptcode,degcode,sname,semail,smob,scity,sadd;
+    int rollno,y;
+
+    JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
+    JComboBox<String> c1, c2, c3, c4;
+    JTextField t1, t2, t3, t4, t5;
+    JTextArea ta1;
+    JButton reg_btn, reset_btn, exit_btn;
+    private JTextField usernameField;
+
+    
+    public void reg_frame() {
+        l1 = new JLabel("Select Year of Admission");
+        l2 = new JLabel("Select the Degree");
+        l3 = new JLabel("Select the Department");
+        l4 = new JLabel("Select the Course");
+        l5 = new JLabel("Student ID");
+        l6 = new JLabel("Enter Student Name");
+        l7 = new JLabel("Enter Student Email ID");
+        l8 = new JLabel("Enter Student Mobile No");
+        l9 = new JLabel("Enter Student Address");
+        l10 = new JLabel("Enter Student City");
+        l11 = new JLabel("ADD NEW STUDENT");
+
+        c1 = new JComboBox<>();
+        c2 = new JComboBox<>();
+        c3 = new JComboBox<>();
+        c4 = new JComboBox<>();
+
+        c1.addItem("-");
+        c1.addItem("2024");
+        c1.addItem("2025");
+        c1.addItem("2026");
+        c1.addItem("2027");
+
+        c2.addItem("-");
+        c2.addItem("UG");
+        c2.addItem("PG");
+
+        c3.addItem("-");
+        c4.addItem("-");
+
+        t1 = new JTextField(30);
+        t1.setEditable(false);
+        t2 = new JTextField(30);
+        t3 = new JTextField(30);
+        t4 = new JTextField(30);
+        t5 = new JTextField(30);
+        ta1 = new JTextArea(30, 4);
+
+        reg_btn = new JButton("Register");
+        reset_btn = new JButton("Reset");
+        exit_btn = new JButton("Close");
+
+        reg_frame.getContentPane().setLayout(null);
+
+        l11.setBounds(180, 20, 200, 20);
+        reg_frame.getContentPane().add(l11);
+
+        l1.setBounds(20, 50, 200, 20);
+        c1.setBounds(210, 50, 190, 20);
+        reg_frame.getContentPane().add(l1);
+        reg_frame.getContentPane().add(c1);
+
+        l2.setBounds(20, 80, 200, 20);
+        c2.setBounds(210, 80, 190, 20);
+        reg_frame.getContentPane().add(l2);
+        reg_frame.getContentPane().add(c2);
+
+        l3.setBounds(20, 110, 200, 20);
+        c3.setBounds(210, 110, 190, 20);
+        reg_frame.getContentPane().add(l3);
+        reg_frame.getContentPane().add(c3);
+
+        l4.setBounds(20, 140, 200, 20);
+        c4.setBounds(210, 140, 190, 20);
+        reg_frame.getContentPane().add(l4);
+        reg_frame.getContentPane().add(c4);
+
+        l5.setBounds(20, 170, 200, 20);
+        t1.setBounds(210, 170, 190, 20);
+        reg_frame.getContentPane().add(l5);
+        reg_frame.getContentPane().add(t1);
+
+        
+        c2.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == e.SELECTED) {
+                    degree = c2.getSelectedItem().toString();
+                    
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafullstack830", "root", "");
+                        String q = "SELECT deptname FROM departments ORDER BY deptname";
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(q);
+
+                        c3.removeAllItems();
+                        c3.addItem("-");
+                        while (rs.next()) {
+                            c3.addItem(rs.getString("deptname"));
+                        }
+
+                    } catch (ClassNotFoundException | SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        c3.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == e.SELECTED) {
+                    String deptName = c3.getSelectedItem().toString();
+                    try {
+                        String q = "SELECT depttype,deptcode FROM departments WHERE deptname=?";
+                        PreparedStatement ps = con.prepareStatement(q);
+                        ps.setString(1, deptName);
+                        ResultSet rs = ps.executeQuery();
+                        if (rs.next()) {
+                            depttype = rs.getString("depttype");
+                            deptcode=rs.getString("deptcode");
+                        }
+
+                        c4.removeAllItems();
+                        
+                        String q1 = "SELECT coursename FROM courses WHERE coursetype=? AND coursedegree=?";
+                        PreparedStatement ps1 = con.prepareStatement(q1);
+                        ps1.setString(1, depttype);
+                        ps1.setString(2, c2.getSelectedItem().toString());
+                        ResultSet rs1 = ps1.executeQuery();
+                        while (rs1.next()) {
+                            c4.addItem(rs1.getString("coursename"));
+                        }
+
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        c4.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getStateChange()==e.SELECTED)
+				{
+					course=c4.getSelectedItem().toString();
+					year=c1.getSelectedItem().toString();
+					generateStuid();
+				}
+			}
+		});
+
+        
+        reg_btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+				
+			}
+		});
+        
+        l6.setBounds(20, 200, 200, 20);
+        t2.setBounds(210, 200, 190, 20);
+        
+        
+        
+        t2.addFocusListener(new FocusAdapter() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+				try
+				{
+					if(!(sname).isEmpty())
+					{
+						sname=t2.getText();
+					}
+				}
+				catch(NullPointerException npe)
+				{
+					JOptionPane.showMessageDialog(reg_frame, "Student ID is missing..!","easc",JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		});
+        t3.addFocusListener(new FocusAdapter() {
+        	@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+        		try
+				{
+					if(!(sname).isEmpty())
+					{
+						if(!(semail).isEmpty())
+						{
+							semail=t3.getText();
+						}
+					}
+				}
+				catch(NullPointerException npe)
+				{
+					JOptionPane.showMessageDialog(reg_frame, "Student Name is missing..!","easc",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+        
+        t4.addFocusListener(new FocusAdapter() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+				try
+				{
+					if(!(smob).isEmpty())
+					{
+						smob=t4.getText();
+					}
+				}
+				catch(NullPointerException npe)
+				{
+					JOptionPane.showMessageDialog(reg_frame, "Student Mobile Number is missing..!","easc",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+        
+        ta1.addFocusListener(new FocusAdapter()
+        {
+        	@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+        		try
+				{
+					if(!(sadd).isEmpty())
+					{
+						sadd=ta1.getText();
+					}
+				}
+				catch(NullPointerException npe)
+				{
+					JOptionPane.showMessageDialog(reg_frame, "Student Address is missing..!","easc",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+        });
+        
+        t5.addFocusListener(new FocusAdapter()
+        {
+        	@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+        		try
+				{
+					if(!(scity).isEmpty())
+					{
+						scity=t5.getText();
+					}
+				}
+				catch(NullPointerException npe)
+				{
+					JOptionPane.showMessageDialog(reg_frame, "Student City is missing..!","easc",JOptionPane.ERROR_MESSAGE);
+				}
+        	}
+        });
+        
+        reg_btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(!(scity).isEmpty())
+				{
+					JOptionPane.showMessageDialog(reg_frame, "Data FullFilled","EASC",JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+        
+        reg_frame.getContentPane().add(l6);
+        reg_frame.getContentPane().add(t2);
+
+        l7.setBounds(20, 230, 200, 20);
+        t3.setBounds(210, 230, 190, 20);
+        reg_frame.getContentPane().add(l7);
+        reg_frame.getContentPane().add(t3);
+
+        l8.setBounds(20, 260, 200, 20);
+        t4.setBounds(210, 260, 190, 20);
+        reg_frame.getContentPane().add(l8);
+        reg_frame.getContentPane().add(t4);
+
+        l9.setBounds(20, 290, 200, 20);
+        ta1.setBounds(210, 290, 190, 60);
+        reg_frame.getContentPane().add(l9);
+        reg_frame.getContentPane().add(ta1);
+
+        l10.setBounds(20, 360, 200, 20);
+        t5.setBounds(210, 360, 190, 20);
+        reg_frame.getContentPane().add(l10);
+        reg_frame.getContentPane().add(t5);
+
+        reg_btn.setBounds(20, 400, 90, 25);
+        reset_btn.setBounds(135, 400, 90, 25);
+        exit_btn.setBounds(250, 400, 90, 25);
+        reg_frame.getContentPane().add(reg_btn);
+        reg_frame.getContentPane().add(reset_btn);
+        reg_frame.getContentPane().add(exit_btn);
+
+        
+        reg_frame.setSize(500, 550);
+        reg_frame.setLocationRelativeTo(null);
+        reg_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        reg_frame.setResizable(false);
+        reg_frame.setVisible(true);
+    }
+
+    
+    public void generateStuid()
+    {
+    	 
+    	
+         try {
+        	 String q = "SELECT rollno FROM students WHERE stucourse=? and studegree =? and yoj=? ORDER BY rollno desc limit 1";
+             PreparedStatement ps = con.prepareStatement(q);
+			 ps.setString(1, course);
+			 ps.setString(2, degree);
+	         ps.setString(3, year);
+	         ResultSet rs = ps.executeQuery();
+	         if (rs.next()) {
+	             rollno=Integer.parseInt(rs.getString("rollno"));
+	         }
+	         y=(Integer.parseInt(year)-2000);
+	         rollno=rollno+1;
+	         if(degree.equalsIgnoreCase("ug")) degcode="U";
+	         else if (degree.equalsIgnoreCase("pg")) degcode="P"; 
+	         
+	         
+	 		 stuid=y+degcode+deptcode+rollno;
+	 		 t1.setText(stuid);
+	 		 t2.requestFocus();
+         } 
+         catch (SQLException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(reg_frame, "Internale Error - "+e.getMessage(),"EASC",JOptionPane.ERROR_MESSAGE);
+		}
+         
+    }
+    
+    
+
+
+       public MainFrame() 
+       {
+    	      
+    	   
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 502, 300);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel headingLabel = new JLabel("EASC");
+        headingLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        headingLabel.setForeground(new Color(56, 220, 220));
+        headingLabel.setFont(new Font("Arial Black", Font.BOLD, 15));
+        headingLabel.setBounds(195, 21, 92, 13);
+        contentPane.add(headingLabel);
+
+        JLabel username = new JLabel("Username");
+        username.setFont(new Font("Arial", Font.BOLD, 14));
+        username.setBounds(86, 71, 77, 13);
+        contentPane.add(username);
+
+        JLabel label2 = new JLabel("Password");
+        label2.setFont(new Font("Arial", Font.BOLD, 14));
+        label2.setBounds(86, 136, 77, 13);
+        contentPane.add(label2);
+
+        usernameField = new JTextField();
+        usernameField.setBounds(230, 64, 163, 30);
+        contentPane.add(usernameField);
+        usernameField.setColumns(10);
+        
+        passwordField = new JPasswordField();
+        passwordField.setBounds(230, 129, 162, 30);
+        contentPane.add(passwordField);
+
+        JButton reg_button = new JButton("Verify");
+        reg_button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String mail_id = usernameField.getText();
+                String password = new String(passwordField.getPassword());
+                if (!mail_id.isEmpty() && !password.isEmpty()) {
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafullstack830", "root", "");
+                        String q = "SELECT * FROM admin_Login WHERE admin_id=? AND pw=?";
+                        PreparedStatement ps = con.prepareStatement(q);
+                        ps.setString(1, mail_id);
+                        ps.setString(2, password);
+                        ResultSet rs = ps.executeQuery();
+                        if (rs.next()) {
+                            JOptionPane.showMessageDialog(mainframe, "Authentication Success..!", "EASC", JOptionPane.INFORMATION_MESSAGE);
+                            mainframe.setVisible(false);
+                            reg_frame();
+                        } else {
+                            JOptionPane.showMessageDialog(mainframe, "Invalid User Name or Password..! Try Again..!", "EASC", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (ClassNotFoundException | SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(mainframe, "Authentication Failed..!", "EASC", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        reg_button.setMnemonic('v');
+        reg_button.setBounds(30, 202, 85, 21);
+        contentPane.add(reg_button);
+
+        JButton reset_button = new JButton("Reset");
+        reset_button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mail_textfield.setText("");
+                passwordField.setText("");
+            }
+        });
+        reset_button.setMnemonic('r');
+        reset_button.setBounds(189, 202, 85, 21);
+        contentPane.add(reset_button);
+
+        JButton exit_button = new JButton("EXIT");
+        exit_button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int res = JOptionPane.showConfirmDialog(contentPane, "Are You Sure Want to Quit?", "EASC", JOptionPane.YES_NO_OPTION);
+                if (res == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
+        exit_button.setMnemonic('x');
+        exit_button.setBounds(357, 202, 85, 21);
+        contentPane.add(exit_button);
+        
+       
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    mainframe = new MainFrame();
+                    mainframe.setLocationRelativeTo(null);
+                    mainframe.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+}

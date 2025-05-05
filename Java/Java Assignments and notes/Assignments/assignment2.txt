@@ -1,0 +1,11 @@
+1. Write a java program to swap the values of two integer variables without using temp variable.
+
+2.Write a java method to print the sum of n natural numbers.
+
+3.Write a java program to find the amstrong number. 
+
+4. Write a java program to find leap year and write a method to generate leap years between two given years.
+
+5. Write a java program to read n numbers and find the sum. avoid adding negative values to the sum.
+
+6. Write a java program to read n numbers and find the sum. If negative numbers are given, the number should not be taken and read input again.

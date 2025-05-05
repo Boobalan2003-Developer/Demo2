@@ -1,0 +1,40 @@
+Wrapper Classes:
+ a wrapper class is a class that encapsulates, or "wraps", a primitive data type, 
+allowing it to be treated as an object.
+
+Integer a; //a is called as an reference variable
+a=new Integer(10);
+a=10; //auto boxing: int value is converted into object 
+
+int b;
+b=a; //unboxing : extracting the int value from object 
+
+
+int a;
+a=10;
+a.
+
+Integer -> int
+Float -> float
+Long -> long
+Double -> double
+
+
+String: -> java.lang.String
+
+          String represents a class that can wrap a character sequence as an object.
+          A String literal should enclosed within double quotes.
+
+ String str="Welcome";
+ str=new String("JAVA");
+
+In java a String can be build using 3 classes. 
+1. String - String object is immutable(not changable)
+2. StringBuffer 
+3. StringBuilder
+
+StringBuffer and StringBuilder objects mutable(changable)
+
+String implements CharSequence
+StringBuffer implements CharSequence
+StringBuilder implements CharSequence

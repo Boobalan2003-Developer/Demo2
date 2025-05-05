@@ -1,0 +1,92 @@
+class and object -> the basic building block or basic components
+of object oriented programming.
+
+
+class is a collection of methods and attributes.
+
+class members -> methods(functions) 
+object -> instance(memory) of a class. an object is used to access the methods of a class.
+
+int a;
+a=10;
+
+A a1;
+a1=new A();
+
+A a1=new A();
+
+class A
+{
+    public static void main(String args[])
+   {
+
+   }
+}
+
+To read runtime input from the user, java.io.DataInputStream class is used.
+java.io.DataInputStream.readLine() - this method is used to read input from the console.
+
+Creating object for java.io.DataInputStream:
+
+  DataInputStream dis=new DataInputStream(System.in);
+  String name;
+
+  System.out.print("\n\tEnter your name: ");
+  name=dis.readLine();
+
+Method:
+              A  block of code that is defined inside a class that performs a particular task.
+
+A method has a specific syntax:
+
+           return_type methodName(arguments)
+           {
+                    code1;
+                    code2;
+                    code3;
+           }
+
+arguements:- The values passed as inputs for a method is called as arguments
+                         A method can take any number of arguements of any type.
+
+return_value:- The value that is return by the method when it is called.
+                         A method will return only one value at a time.
+
+    float findSum(float a,float b, float c)
+    {
+            float d=a+b+c;
+            return d;
+    }
+
+    int findBig(int a,int b, int c)
+    {
+           if(a>b && a>c)
+                return a;
+           else if(b>a && b>c)
+                   return b;
+           else
+                   return c;
+    }
+
+   void findSum(int a,int b)
+  {
+      no return value;
+
+  }
+
+//a=12, b=20, c=1
+//a=100,b=21,c=150
+//a=150,b=12,c=100
+
+usage of methods in a class ensures reusability and modularity.
+
+A program can have multiple classes. The program can be saved using the classname which
+has a main method. 
+
+On compiling that program, every class in the program will be compiled separately and class files
+will be created for each class.
+
+The class with main function can be executed.
+the class without main function cannot be executed.
+
+

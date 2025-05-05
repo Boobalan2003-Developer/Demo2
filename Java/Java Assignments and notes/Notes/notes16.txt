@@ -1,0 +1,31 @@
+GUI -> Graphical User Interface
+
+  It is the application model that enables the user to interact with the software using visual 
+components like a button, a textbox, a text area, a combobox, a listbox, a menubar, a menuitem.
+
+AWT - Abstract Window Toolkit
+
+javax.swing -> this is the package that represents the AWT package interms of JFC(Java Foundation
+Classes)
+
+javax.javaFx
+
+Components javax.swing:
+
+1. Containers - These are the classes that are used to hold or contain the components(user-controls)
+    eg) JWindow, JFrame, JPanel
+       Types: Primary Containers and Secondary Containers
+
+2. Layout Managers - These are the classes that represents the schema of arrangement of the 
+ components on the containers.
+            FlowLayout(default), GridLayout, GridBagLayout, CardLayout,BoxLayout
+
+3. Components:
+               These are the user controls thru which a user interacts with the software.
+        eg: JButton, JTextField, JTextArea, JLabel, JComboBox, JListBox,JCheckBox
+
+MVC Architecture:
+
+M- Model - defines the design Data
+V - View - visual depiction of the model
+C - Controller - the user interaction response

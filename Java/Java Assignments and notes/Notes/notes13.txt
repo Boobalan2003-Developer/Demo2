@@ -1,0 +1,143 @@
+JDBC:
+
+JAVA DATABASE CONNECTIVITY
+
+DBMS:
+Database Management System.
+
+Database - It is the physical storage mechanism used to store 
+                 a set of data in a preorganized schema.
+
+Model of Database Management System:
+1. RDBMS - Relational Database Management System
+2. Object Oriented Model
+3. Hierarchical Model - File System.
+
+  Working with RDBMS:
+             A specific languaged called SQL(Structured Query Language)
+ is used.
+  RDBMS Tools(softwares): MS Sql Server, Oracle, MySql/ MariaDb
+
+XAMPP -
+X - Cross platform
+A- Apache
+M- MySQL
+P - PHP
+P - Pearl
+
+Types of SQL Queries:
+1. DDL - Data Definition Language
+2. DML - Data Manipulation Language
+3. DCL - Data Control Language
+4. TCL - Transaction Control Language
+
+DDL Queries:
+
+CREATE / DROP database,
+CREATE/DROP table,
+ALTER TABLE
+
+DML:
+CRUD - create(insert), retrieve, update, delete
+insert 
+select
+update
+delete
+
+IN RDBMS, a database is a collection of tables,
+A table is a collection  of columns(Attributes) and rows(records)
+
+ID	Name	Email		Mobile		Password
+24EEE101Arun	arun@gmail.com	1234567890	arun@123
+2	banu	banu123@gmail.com1345678991	banu@123
+
+MIS
+CollegeDB
+	Transport
+	Secuirty
+	Employee
+	Academic	
+		ECE
+		EEE
+		AE
+		AUE
+		CIVIL
+		MECH
+	Sports
+	NCC
+	Hostel
+	Mess
+	Estate Office
+
+Syntax of create and drop database query:
+
+CREATE DATABASE db_name;
+DROP DATABASE db_name;
+
+eg) CREATE DATABASE demodb;
+       DROP DATABASE demodb;
+
+Syntax of create and drop table:
+
+CREATE TABLE tble_name(column_name1 data_type, column_name2 data_type...)
+
+DROP TABLE tble_name
+
+eg)
+CREATE TABLE students(stuid varchar(15),stuname varchar(50),stuemail varchar(50))
+
+DROP TABLE students
+
+URL to open MYSQL homepage:
+
+1. open chrome
+2. http://localhost
+3. Click on PHPMYADMIN link
+
+DML:
+
+1. insert query:
+    INSERT INTO table_name(column_name_list)VALUES(valueList)
+  in case of varchar columuns the values should be enclosed within 
+  single quotes(')
+
+eg) insert into students(rollno,stuid,stuname,stuemailid,stumobile,studept,
+stucourse)values(101,'24ECE121','ARUN','arun@gmai.com','9090991919',
+'EEE','BE');
+
+JDBC API:
+
+Steps in connecting a java program and mysql database:
+
+java.sql -> java api(package) is used for JDBC programming
+
+1. Loading JDBC  Driver - com.mysql.jdbc.Driver
+   Class.forName() method is used to load a jdbc driver.
+ 
+   Class.forName('com.mysql.jdbc.Driver');
+
+2. Create connection object. Connection is a interface in java.sql package.
+
+     Connection con=DriverManager.getConnection();
+ getConnection("jdbc:mysql://localhost:3306/javafullstack830","root","");
+getConnection("jdbc:mysql://hostname:port_no/db_name","db_username","db_password");
+
+3. Create Statement object using con.createStatement();
+
+eg) Statement stmt=con.createStatement()
+
+4. Write the query:
+           
+
+5. executing the query using 
+	stmt.executeQuery(); - DML Queries except UPDATE query
+	stmt.execute(); - DDL
+                 stmt.executeUpdate(); - update queries.
+
+6. Working with ResultSet
+7. Close the connection using con.close();
+
+
+
+
+

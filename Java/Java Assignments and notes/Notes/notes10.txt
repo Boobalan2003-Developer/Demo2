@@ -1,0 +1,49 @@
+Exception handling:-
+
+Exception
+
+Error:- The mistake done during the program development. 
+
+Types of error: Compile time error - syntax error
+
+                          Runtime error - Logical errors.
+
+
+input=1234
+output=4321
+
+Exception: Exceptions are defined as the unexpected happening or scenario during the
+program execution.
+	An exception will make the program to halt(hang/quit) instantly.
+ So a programmer to think over all the possible cases of input and output in the program.
+This is called as exception handling in java.
+
+Exception handling Techniques:
+1. try - try is a block of code that contains the codes that might raise exceptions
+
+2. catch - catch is a block of code that contains the codes that are to be executed when an 
+               Exception object is raised.
+
+3. finally - finally is a block of code that contains the code that are to be executed even when an
+                Exception object is raised.
+
+4.throw - it is a keyword that makes an Exception object to be thrown out of the try block.
+
+5.throws - it is a keyword that specifies the compiler that the method has a probability of 
+                  throwing an Exception object
+
+A try block can have multiple catch blocks.
+A try block should always be continued with atleast one catch block of finally block.
+
+Types of Exceptions:
+1. Checked Exceptions - Probability of exceptions are checked during compile time.
+                     java.io.IOException
+2. Unchecked Exceptions  - Probability of exceptions are not checked during compile time.
+                   java.lang.ArithmeticException, java.util.InputMismatchException
+
+Exception objects are throwable in nature.
+
+stackTrace
+
+java.lang.Exception is the supermost class for all checked and unchecked exceptions
+

@@ -1,0 +1,71 @@
+Access Specifiers:
+Access specifiers are the tokens to modify the accessibility of a class member outside the class,
+or outside the package.
+
+Access Specifiers in Java:
+      default - default members are accessible within the class and outside the class of 
+                      same package.
+      private - private members are accessible only inside the same class.
+       protected - a protected member of a class can be accessed only within the sub class of same 
+                            package.
+       public - a public member of a class can be accessed outside the class within the same package
+                    or different package.
+
+
+class A
+{
+      int a,b,c;
+     void read()
+      {   }
+      void print()
+      {   {
+}
+
+class B
+{
+    public static void main(String args[])
+    {
+
+    }
+}
+
+
+Inhertiance:
+
+ The process of deriving the features of an existing class to the newly developed class is called
+inheritance. Inheritance ensures data integrity. It avoid duplication of data and process in multiple
+instance.
+
+Types of inheritance:
+      Java supports single inheritance and multi-level inheritance.
+   In java no class will inherit more than one class at a time.
+
+How to inherit a class:
+      "extends" keyword is used to inherit a class.
+  eg:
+
+ class ClassA{
+
+}
+
+class ClassB extends ClassA /* all the public, default and protected members of ClassA will be inherited.
+{
+     
+}
+
+java.lang.object is the default super class for all java classes.
+
+**Private methods and variables cannot be inherited to sub classes.
+
+**final class cannot be inherited.
+
+class relationships:
+same package subclass
+same package non sub class
+
+different package subclass
+different package non sub class
+
+
+half duplex - single channel for both sending and receiving
+full duplex - separate channel for both sending and receiving

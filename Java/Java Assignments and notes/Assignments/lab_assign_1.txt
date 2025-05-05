@@ -1,0 +1,13 @@
+1. Write a java program to read name, address, mobile number, emailid, birthplace and print 
+the input values.
+
+2. Write a java program to read the student name, roll number, marks of 5 subjects. Find
+the total and average of the marks and print the result along with the student name and marks.
+
+3. Write a java program to find the area of a circle. Read the diameter as input and find the area.
+
+4. Write a java program to find the emi value of a loan. Read the loan amount, loan period and 
+rate of interest from the user.
+
+5. Write a java program to perform arithematic calculations. Read two numbers as input and print
+the sum, difference, product and quotient. 

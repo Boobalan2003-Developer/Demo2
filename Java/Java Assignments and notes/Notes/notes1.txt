@@ -1,0 +1,69 @@
+Course -> java full stack:
+
+1. core java programming - J2SE(Desktop Application - Standalone Applications)
+2. HTML+CSS+JavaScript+Jquery+ajax
+3. Advanced Java - J2EE - (Web based applications and cloud based applications)
+4. Android App Developement(mobile applications).
+
+1 language: Core Java.
+
+Java - is an Object oriented programming language. 1990's.
+           Developed by James Gosling. 
+           Developed at Sun MicroSystems and later in 2000, java was acquired by Oracle Inc.
+           Newly developed language was initially called as OAK, later changed GREEN
+
+
+Automated Devices -> LCD Projector- Searches for source of input
+                                       HDMI 1, HDMI 2, Comp1, Comp2, Aux1, Axu2
+           auto search for input - its a tiny bit of code that runs on a microchip, and controls the device
+         after 5 minutes of idle state -> it switches off the lamp.
+
+What are the principles of Java:
+1. _____ should be object oriented.
+2. ______should be robust(strong).
+3._______should be platform independent.(to be executed in all platforms)
+4. _______ should be api driven.
+5. ______should be very easy to learn and code.
+6.______ should be familiar.
+
+After developement: due to its simplicity and its robustness , James Gosling -> made Java
+ as a GUL(General User Licensing). No restrictions to use Java Development Kit.
+
+Java is a programming language.
+
+Types of Java:
+
+1. J2SE - Java 2 Platform Standard Edition(Core Java) -> Tally 
+2. J2EE - Java 2 Platform Enterprise Edition(Advanced Java) -> all online payment gateways
+3. J2ME - Java 2 Platform Micro Edition(mobile java) -> all portable digital gadgets(embedded systems)
+
+What are the tools to develope a java program:
+
+1. JDK - Java Development Kit
+         - can be downloded from oraclce.com
+      Components of JDK:
+                  1. Java API (Application Programming Interface)
+                   2. JVM - Java Virtual Machine(Java Interpreter)
+                   3. JIT Compiler.
+                   4. JRE - Java Runtime Environment.
+
+2.  text processor(notepad) - to develope source code
+
+3.Console - It is the terminal to execute the program and to see the output
+
+notepad and cmd prompt.
+
+Java source code should be stored as FileName.java
+
+command to compile a java program:
+
+ javac FileName.java
+
+command to execute a java class file:
+
+java ClassName
+
+
+
+
+

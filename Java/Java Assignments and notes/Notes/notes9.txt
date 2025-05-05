@@ -1,0 +1,45 @@
+
+Abstract Class:
+The class which is defined using the abstract keyword.
+An abstract class cannot be instantiated.
+An abstract class can contain both abstract methods and non-abstract methods.
+
+abstract method: The method defined using the abstract keyword. 
+ An abstract method wont have the method body(definition)
+
+non-abstract: the methods with definition(body)
+
+abstract class Abs
+{
+    void printValues()
+    {
+            statements;
+   }
+  abstract void printDemo();
+}
+
+concerete class -> the class that can be instantiated.
+
+An abstract class has to be extended to a concerete class and all the abstract methods has be to
+overridden in the concerete class before calling.
+
+Interfaces:
+
+Interfaces are the abstract class like component, but defined using interface keyword.
+
+syntax:
+
+                interface Interface()
+                {
+                     abstract methods;
+                }
+
+1. Interface cannot be instantiated.
+2. Interfaces has to be implemented into a concerete class and all the methods has to be overridden
+3. A class can implement more than one interface at the same time.
+4. All the methods defined inside the interface are abstract and public by default in definition
+
+class Demo extends Class implements Demo1, Demo2
+{
+
+}

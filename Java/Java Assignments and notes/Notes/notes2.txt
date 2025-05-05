@@ -1,0 +1,52 @@
+/* Java Naming Convention*/
+
+/*Java API Structure*/
+
+packages - java.io, java.lang, java.rmi, java.util, java.net, javax.swing
+   packages are the collection of classes, abstract classes, interfaces
+
+Classes -> java.io.DataInputStream,java.io.BufferedInputStream,
+                   javax.swing.Button, java.lang.String
+  Classes are the collection of methods and fields.
+
+method -> java.io.DataInputStream.readLine();
+                  java.lang.String.toString()
+
+field -> are defined as the constant variables inside a class -> MAXIMIZED_BOTH
+
+
+Data types:
+
+   What are the values that can be used for processing a result?
+
+Primary Datatypes
+    Numericals -> int(Integer), float(Float), double(Double), long(Long),byte(Byte), short(Short)
+    boolean - true / false
+    characters -> Character, String
+
+Reference Data types
+ The variables that are used to store an object of a class is called Reference data type.
+
+Variable:
+   A variable is named location used to store a single data(value) during the program execution.
+
+Syntax to Declare a variable:
+
+    data_type variable_name;
+  
+   int a;
+   float avg;
+   double area;
+
+Reading Input from the user:
+
+Usually we can read user input using two classes.
+1. java.io.DataInputStream.
+2. java.util.Scanner.
+
+syntax to create an object for a class:
+
+ClassName objectnme=new ClassName();
+new -> dynamic memory allocation operator.
+
+
